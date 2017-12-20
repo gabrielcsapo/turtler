@@ -18,9 +18,7 @@ module.exports = function turtler(data, options={}) {
 
   // Find the maximum width of each column
   // If a column contains an odd number of values throw
-  for(var i = 0; i < data.length; i++) {
-    let line = data[i];
-
+  data.forEach((line) => {
     // The line should be an array
     if(!Array.isArray(line)) throw new Error('data should be an array of arrays');
     // Set the initial length of the line
@@ -38,7 +36,7 @@ module.exports = function turtler(data, options={}) {
         columnWidths[l] = v.length;
       }
     });
-  }
+  });
 
   data.forEach((line, l) => {
     let row = line.map((column, i) => {
