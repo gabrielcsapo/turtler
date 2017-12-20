@@ -20,7 +20,7 @@ npm install turtler --save
 
 > the given options are the defaults
 
-```
+```javascript
 let table = turtler([
   ["uid", "name"],
   ["1", "Doe"],
