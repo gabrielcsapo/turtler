@@ -17,17 +17,17 @@ module.exports = function turtler(data, options={}) {
   let { hasHeader=true, columnSeparator=' | ', headerSeparator='=' } = options;
 
   // Find the maximum width of each column
-  // If a column contains an odd number of values throw
-  data.forEach((line) => {
-    // The line should be an array
-    if(!Array.isArray(line)) throw new Error('data should be an array of arrays');
-    // Set the initial length of the line
-    if(!columns) columns = line.length;
-    // If the current line is not the same length as the initial throw error
-    if(columns !== line.length) throw new Error('columns are not formed properly');
+  // If rows contain uneven number of columns, throw
+  data.forEach((row) => {
+    // The row should be an array
+    if(!Array.isArray(row)) throw new Error('data should be an array of arrays');
+    // Set the initial length of the row
+    if(!columns) columns = row.length;
+    // If the current row is not the same length as the initial one throw error
+    if(columns !== row.length) throw new Error('columns are not formed properly');
 
-    // find the maximum length of the column
-    line.forEach((v, l) => {
+    // find the maximum length of each column
+    row.forEach((v, l) => {
       // column values must be strings
       if(typeof v !== 'string') throw new Error('column values should be strings');
 
@@ -38,8 +38,8 @@ module.exports = function turtler(data, options={}) {
     });
   });
 
-  data.forEach((line, l) => {
-    let row = line.map((column, i) => {
+  data.forEach((row, l) => {
+    row = row.map((column, i) => {
       let value = '';
       // the length of the string should be the max column widths
       for(var c = 0; c < columnWidths[i]; c++) {
