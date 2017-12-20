@@ -39,13 +39,10 @@ module.exports = function turtler(data, options={}) {
   });
 
   data.forEach((row, l) => {
-    row = row.map((column, i) => {
-      let value = '';
-      // the length of the string should be the max column widths
-      for(var c = 0; c < columnWidths[i]; c++) {
-        value += column[c] || ' ';
-      }
-      return value;
+    row = row.map((value, i) => {
+      // Create pad of empty spaces to match the width of this value to max width of this column
+      let padding = ' '.repeat(columnWidths[i] - value.length);
+      return value + padding;
     // join on the columnSeparator
     }).join(columnSeparator);
 
