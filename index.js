@@ -4,8 +4,8 @@
  * @param  {Array[Array<String>]} data   - array of arrays of strings
  * @param  {Object}  options         - options to override the default actions
  * @param  {Boolean} options.hasHeader - this will determine if the table data has a header or not, by default this is true
- * @param  {String}  options.columnSeperator - the default seperators is ' | '
- * @param  {String}  options.headerSeperator - the default header seperators is '=', this value should only be one character
+ * @param  {String}  options.columnSeparator - the default separators is ' | '
+ * @param  {String}  options.headerSeparator - the default header separators is '=', this value should only be one character
  * @return {String} - a string that represents the ascii table of the data provided
  */
 module.exports = function turtler(data, options={}) {
@@ -14,7 +14,7 @@ module.exports = function turtler(data, options={}) {
   let table = '';
   let columns = 0;
   let columnWidths = [];
-  let { hasHeader=true, columnSeperator=' | ', headerSeperator='=' } = options;
+  let { hasHeader=true, columnSeparator=' | ', headerSeparator='=' } = options;
 
   // Find the maximum width of each column
   // If a column contains an odd number of values throw
@@ -48,17 +48,17 @@ module.exports = function turtler(data, options={}) {
         value += column[c] || ' ';
       }
       return value;
-    // join on the columnSeperator
-    }).join(columnSeperator);
+    // join on the columnSeparator
+    }).join(columnSeparator);
 
     table += `${row}\n`;
     if(l === 0) {
-      // ignore the header string if hasHeader is false or headerSeperator is not set
-      if(!hasHeader || !headerSeperator) return;
+      // ignore the header string if hasHeader is false or headerSeparator is not set
+      if(!hasHeader || !headerSeparator) return;
 
-      // we add columnSeperator.length because above we joined on that string which could be more than one character.
+      // we add columnSeparator.length because above we joined on that string which could be more than one character.
       // We only want one character so we only look at the first character of the string
-      table += headerSeperator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeperator.length) + '\n';
+      table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeparator.length) + '\n';
     }
   });
 
