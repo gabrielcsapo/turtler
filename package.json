@@ -1,0 +1,40 @@
+{
+  "name": "turtler",
+  "version": "0.0.1",
+  "description": "🐢 Ascii tables made easy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielcsapo/turtler.git"
+  },
+  "author": "Gabriel J. Csapo <gabecsapo@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gabrielcsapo/turtler/issues"
+  },
+  "homepage": "https://github.com/gabrielcsapo/turtler#readme",
+  "keywords": [
+    "ascii",
+    "tables"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index test",
+    "test": "tape test",
+    "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
+    "coverage": "tap test --coverage --coverage-report=lcov",
+    "generate-docs": "tryitout"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-minify": "^0.2.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "brfs": "^1.4.3",
+    "browserify": "^14.5.0",
+    "eslint": "^4.13.1",
+    "tap": "^11.0.0",
+    "tape": "^4.8.0",
+    "tryitout": "^1.2.2"
+  }
+}
