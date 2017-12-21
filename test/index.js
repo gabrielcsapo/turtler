@@ -49,15 +49,15 @@ test('turtler', (t) => {
     }
   });
 
-  t.test('should be able to override the header and column seperators', (t) => {
+  t.test('should be able to override the header and column separators', (t) => {
     try {
       let table = turtler([
         ["uid", "name"],
         ["1", "Doe"],
         ["2", "Hemma"]
       ], {
-        headerSeperator: '',
-        columnSeperator: ' '
+        headerSeparator: '',
+        columnSeparator: ' '
       });
       t.equal(table, 'uid name \n1   Doe  \n2   Hemma\n');
       t.end();
@@ -73,7 +73,7 @@ test('turtler', (t) => {
         ["2", "Hemma"]
       ], {
         hasHeader: false,
-        columnSeperator: ' '
+        columnSeparator: ' '
       });
 
       t.equal(table, '1 Doe  \n2 Hemma\n');

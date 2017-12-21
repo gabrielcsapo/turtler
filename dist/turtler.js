@@ -5,8 +5,8 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
  * @param  {Array[Array<String>]} data   - array of arrays of strings
  * @param  {Object}  options         - options to override the default actions
  * @param  {Boolean} options.hasHeader - this will determine if the table data has a header or not, by default this is true
- * @param  {String}  options.columnSeperator - the default seperators is ' | '
- * @param  {String}  options.headerSeperator - the default header seperators is '=', this value should only be one character
+ * @param  {String}  options.columnSeparator - the default separators is ' | '
+ * @param  {String}  options.headerSeparator - the default header separators is '=', this value should only be one character
  * @return {String} - a string that represents the ascii table of the data provided
  */
 module.exports = function turtler(data, options={}) {
@@ -15,43 +15,46 @@ module.exports = function turtler(data, options={}) {
   let table = '';
   let columns = 0;
   let columnWidths = [];
-  let { hasHeader=true, columnSeperator=' | ', headerSeperator='=' } = options;
+  let { hasHeader=true, columnSeparator=' | ', headerSeparator='=' } = options;
 
   // Find the maximum width of each column
-  // If a column contains an odd number of values throw
-  for(var i = 0; i < data.length; i++) {
-    let line = data[i];
+  // If rows contain uneven number of columns, throw
+  data.forEach((row) => {
+    // The row should be an array
+    if(!Array.isArray(row)) throw new Error('data should be an array of arrays');
+    // Set the initial length of the row
+    if(!columns) columns = row.length;
+    // If the current row is not the same length as the initial one throw error
+    if(columns !== row.length) throw new Error('columns are not formed properly');
 
-    if(!Array.isArray(line)) throw new Error('data should be an array of arrays');
-    if(!columns) columns = line.length;
-    if(columns !== line.length) throw new Error('columns are not formed properly');
-
-    // find the maximum length of the column
-    line.forEach((v, l) => {
+    // find the maximum length of each column
+    row.forEach((v, l) => {
+      // column values must be strings
       if(typeof v !== 'string') throw new Error('column values should be strings');
 
+      // Find the maximum string length in each column
       if(!columnWidths[l] || columnWidths[l] < v.length) {
         columnWidths[l] = v.length;
       }
     });
-  }
+  });
 
-  data.forEach((line, l) => {
-    let row = line.map((column, i) => {
-      let value = '';
-      for(var c = 0; c < columnWidths[i]; c++) {
-        value += column[c] || ' ';
-      }
-      return value;
-    }).join(columnSeperator);
+  data.forEach((row, l) => {
+    row = row.map((value, i) => {
+      // Create pad of empty spaces to match the width of this value to max width of this column
+      let padding = ' '.repeat(columnWidths[i] - value.length);
+      return value + padding;
+    // join on the columnSeparator
+    }).join(columnSeparator);
 
     table += `${row}\n`;
     if(l === 0) {
-      if(!hasHeader || !headerSeperator) return;
+      // ignore the header string if hasHeader is false or headerSeparator is not set
+      if(!hasHeader || !headerSeparator) return;
 
-      // we add columnSeperator.length because above we joined on that string which could be more than one character.
+      // we add columnSeparator.length because above we joined on that string which could be more than one character.
       // We only want one character so we only look at the first character of the string
-      table += headerSeperator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeperator.length) + '\n';
+      table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeparator.length) + '\n';
     }
   });
 
