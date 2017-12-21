@@ -3,7 +3,7 @@ const test = require('tape');
 const turtler = require('../index');
 
 test('turtler', (t) => {
-  t.plan(6);
+  t.plan(7);
 
   t.test('should throw on value that isn\'t an array of arrays', (t) => {
     try {
@@ -83,4 +83,12 @@ test('turtler', (t) => {
     }
   });
 
+  t.throws((t) => {
+      turtler([
+        ["uid", "name"],
+        ["1", "Doe"],
+        ["2", "Hemma", "Errorneous input"]
+      ]);
+      t.end();
+  }, 'should throw error for mismatching column length');
 });
