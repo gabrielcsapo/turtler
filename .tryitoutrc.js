@@ -38,8 +38,8 @@ module.exports = {
           ["1", "Doe"],
           ["2", "Hemma"]
         ], {
-          columnSeperator: ' + ',
-          headerSeperator: '+'
+          columnSeparator: ' + ',
+          headerSeparator: '+'
         }));
       `
   }],
