@@ -20,27 +20,42 @@ module.exports = {
     title: "Creating a simple ascii table",
     subtitle: "This will use the defaults",
     value: `
-        var turtler = require('turtler');
-        console.log(turtler([
+        var Turtler = require('turtler');
+        var table = new Turtler([
           ["uid", "name"],
           ["1", "Doe"],
           ["2", "Hemma"]
-        ]));
+        ]);
+        table.toString();
       `
   }, {
     type: "code",
     title: "Creating a simple ascii table with extended defaults",
     subtitle: "This will use the defaults",
     value: `
-        var turtler = require('turtler');
-        console.log(turtler([
+        var Turtler = require('turtler');
+        var table = new Turtler([
           ["uid", "name"],
           ["1", "Doe"],
           ["2", "Hemma"]
         ], {
           columnSeparator: ' + ',
           headerSeparator: '+'
-        }));
+        });
+        table.toString();
+      `
+  },{
+    type: "code",
+    title: "Even rendering markdown can be as simple",
+    subtitle: "This will use the defaults",
+    value: `
+        var Turtler = require('turtler');
+        var table = new Turtler([
+          ["uid", "name"],
+          ["1", "Doe"],
+          ["2", "Hemma"]
+        ]);
+        table.markdown();
       `
   }],
   output: "./docs",
