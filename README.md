@@ -21,7 +21,7 @@ npm install turtler --save
 > the given options are the defaults
 
 ```javascript
-let table = turtler([
+let table = new Turtler([
   ["uid", "name"],
   ["1", "Doe"],
   ["2", "Hemma"]
@@ -41,4 +41,28 @@ uid | name
 ===========
 1   | Doe  
 2   | Hemma
+```
+
+### Markdown
+
+> We can also output markdown tables just as easily
+
+
+```javascript
+let table = new Turtler([
+  ["uid", "name"],
+  ["1", "Doe"],
+  ["2", "Hemma"]
+]);
+
+console.log(table.markdown());
+```
+
+This will yield:
+
+```
+| uid | name  |
+|-----|-------|
+| 1   | Doe   |
+| 2   | Hemma |
 ```

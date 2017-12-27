@@ -1,6 +1,6 @@
 {
   "name": "turtler",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "🐢 Ascii tables made easy",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index test",
+    "lint": "eslint index.js test",
     "test": "tape test",
     "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
     "coverage": "tap test --coverage --coverage-report=lcov",
