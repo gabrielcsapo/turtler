@@ -59,7 +59,7 @@ test('Turtler', (t) => {
         ["1", "Doe"],
         ["2", "Hemma"]
       ]);
-      t.equal(table.markdown(), '| uid | name  |\n|=====|=======|\n| 1   | Doe   |\n| 2   | Hemma |\n');
+      t.equal(table.markdown(), '| uid | name  |\n|-----|-------|\n| 1   | Doe   |\n| 2   | Hemma |\n');
       t.end();
     } catch(ex) {
       t.fail(ex);

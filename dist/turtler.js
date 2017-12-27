@@ -82,8 +82,8 @@ class Turtler {
    * @return {String} markdown table string
    */
   markdown() {
-    const { data, hasHeader=true } = this;
-    
+    const { data } = this;
+
     let table = '';
     let columns = 0;
     let columnWidths = [];
@@ -119,6 +119,16 @@ class Turtler {
       }).join(' | ');
 
       table += `| ${row} |\n`;
+
+      if(l === 0) {
+        // we add the header with the width of the column minus the addition of a pipe symbol
+        table += columnWidths.map((width, i) => {
+          if(i === 0) {
+            return '|' + '-'.repeat(width + 2) + '|';
+          }
+          return '-'.repeat(width + 2) + '|';
+        }).join('') + '\n';
+      }
     });
 
     return table;
