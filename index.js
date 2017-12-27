@@ -110,7 +110,7 @@ class Turtler {
     });
 
     // make the rows nice and tidy giving enough space on all sides to make it uniform
-    data.forEach((row) => {
+    data.forEach((row, l) => {
       row = row.map((value, i) => {
         // Create pad of empty spaces to match the width of this value to max width of this column
         return value + ' '.repeat(columnWidths[i] - value.length);
@@ -118,6 +118,16 @@ class Turtler {
       }).join(' | ');
 
       table += `| ${row} |\n`;
+
+      if(l === 0) {
+        // we add the header with the width of the column minus the addition of a pipe symbol
+        table += columnWidths.map((width, i) => {
+          if(i === 0) {
+            return '|' + '='.repeat(width + 2) + '|'
+          }
+          return '='.repeat(width + 2) + '|'
+        }).join('') + '\n';
+      }
     });
 
     return table;
