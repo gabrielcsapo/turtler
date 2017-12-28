@@ -3,7 +3,7 @@ const test = require('tape');
 const Turtler = require('../index');
 
 test('Turtler', (t) => {
-  t.plan(8);
+  t.plan(9);
 
   t.test('should throw on value that isn\'t an array of arrays', (t) => {
     try {
@@ -112,6 +112,19 @@ test('Turtler', (t) => {
     } catch (e) {
       t.equal(e.message, 'columns are not formed properly');
       t.end();
+    }
+  });
+  t.test('should be able to format simple arrays (html)', (t) => {
+    try {
+      let table = new Turtler([
+        ["uid", "name"],
+        ["1", "Doe"],
+        ["2", "Hemma"]
+      ]);
+      t.equal(table.html(), '<div class="table row"><span class="table column">uid</span><span class="table column">name</span></div><div class="table row"><span class="table column">1</span><span class="table column">Doe</span></div><div class="table row"><span class="table column">2</span><span class="table column">Hemma</span></div>');
+      t.end();
+    } catch(ex) {
+      t.fail(ex);
     }
   });
 });
