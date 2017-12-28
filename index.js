@@ -122,7 +122,10 @@ class Turtler {
       if(l === 0) {
         // we add the header with the width of the column minus the addition of a pipe symbol
         table += columnWidths.map((width, i) => {
-          return (i === 0 ? '|' : '') + '-'.repeat(width + 2) + '|';
+          if(i == 0) {
+            return '|' + '-'.repeat(width + 2) + '|';
+          }
+          return '-'.repeat(width + 2) + '|';
         }).join('') + '\n';
       }
     });

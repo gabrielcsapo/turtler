@@ -1,3 +1,7 @@
+# 1.0.1 (12/27/2017)
+
+- improves readability of markdown header generation
+
 # 1.0.0 (12/26/2017)
 
 - makes turtler a class instead of a function
