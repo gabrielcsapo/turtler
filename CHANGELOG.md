@@ -1,3 +1,9 @@
+# 1.0.2 (12/28/2017)
+
+- adds caching
+- improves logic reuse by creating `getSize` which returns the amount of columns and their perspective widths
+- adds the ability to export html tables
+
 # 1.0.1 (12/27/2017)
 
 - improves readability of markdown header generation

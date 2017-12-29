@@ -1,0 +1,14 @@
+table {
+  text-align: center;
+  word-break: break-all;
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+table thead > tr > th {
+  font-weight: 500
+}
+
+table td, table th {
+  border: 1px solid #cfcfc4;
+}

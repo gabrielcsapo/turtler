@@ -57,9 +57,23 @@ module.exports = {
         ]);
         table.markdown();
       `
+  },{
+    type: "code",
+    title: "Rending html tables can be just as simple!",
+    subtitle: "This will use the defaults",
+    value: `
+        var Turtler = require('turtler');
+        var table = new Turtler([
+          ["uid", "name"],
+          ["1", "Doe"],
+          ["2", "Hemma"]
+        ]);
+        console.html(table.html());
+      `
   }],
   output: "./docs",
   externals: [
-    "./dist/turtler.min.js"
+    "./dist/turtler.min.js",
+    "./docs/main.css"
   ]
 };
