@@ -18,8 +18,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js test",
-    "test": "tape test",
+    "lint": "eslint index.js constants.js test",
+    "test": "tape test/*.js",
     "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
     "coverage": "tap test --coverage --coverage-report=lcov",
     "generate-docs": "tryitout"

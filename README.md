@@ -66,3 +66,27 @@ This will yield:
 | 1   | Doe   |
 | 2   | Hemma |
 ```
+
+### Html
+
+> We can also output html tables just as easily
+
+```javascript
+
+let table = new Turtler([
+  ["uid", "name"],
+  ["1", "Doe"],
+  ["2", "Hemma"]
+]);
+
+console.log(table.html());
+
+```
+
+This will yield:
+
+```html
+<div class="table row"><span class="table column">uid</span><span class="table column">name</span></div>
+<div class="table row"><span class="table column">1</span><span class="table column">Doe</span></div>
+<div class="table row"><span class="table column">2</span><span class="table column">Hemma</span></div>
+```
