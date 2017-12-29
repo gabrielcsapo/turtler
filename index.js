@@ -25,6 +25,8 @@ class Turtler {
    * @return {String} - ascii table
    */
   ascii() {
+    if (this.asciiTable) return this.asciiTable;
+
     const { data, hasHeader, columnSeparator, headerSeparator } = this;
 
     let table = '';
@@ -72,8 +74,7 @@ class Turtler {
         table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeparator.length) + '\n';
       }
     });
-
-    return table;
+    return this.asciiTable = table;
   }
   /**
    * renders a markdown table
@@ -81,6 +82,8 @@ class Turtler {
    * @return {String} markdown table string
    */
   markdown() {
+    if (this.markdownTable) return this.markdownTable;
+
     const { data } = this;
 
     let table = '';
@@ -129,8 +132,7 @@ class Turtler {
         }).join('') + '\n';
       }
     });
-
-    return table;
+    return this.markdownTable = table;
   }
   /**
    * renders the data to an ascii table string
