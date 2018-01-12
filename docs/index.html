@@ -148,109 +148,6 @@ if (false) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var dedent = __webpack_require__(29);
-
-module.exports.cleanString = function cleanString(string) {
-  return dedent(string || ''.trim());
-};
-
-module.exports.Loader = function () {
-  function Loader(text) {
-    _classCallCheck(this, Loader);
-
-    this.text = text;
-    this.spinner = ["⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋"];
-    this.interval = 80;
-    this.tick = 0;
-    this.loading = true;
-    this.loader = '';
-  }
-
-  _createClass(Loader, [{
-    key: 'start',
-    value: function start() {
-      var _this = this;
-
-      this.loader = setInterval(function () {
-        _this.tick = _this.tick > _this.loader.length - 1 ? 0 : _this.tick;
-        process.stdout.write(_this.spinner[_this.tick] + ' ' + _this.text + ' \r');
-        _this.tick++;
-      }, this.interval);
-      return this;
-    }
-  }, {
-    key: 'stop',
-    value: function stop() {
-      clearInterval(this.loader);
-      return this;
-    }
-  }, {
-    key: 'update',
-    value: function update(text) {
-      this.text = text;
-      this.stop();
-      this.start();
-      return this;
-    }
-  }]);
-
-  return Loader;
-}();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports) {
 
 /*
@@ -332,7 +229,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -704,6 +601,109 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var dedent = __webpack_require__(29);
+
+module.exports.cleanString = function cleanString(string) {
+  return dedent(string || ''.trim());
+};
+
+module.exports.Loader = function () {
+  function Loader(text) {
+    _classCallCheck(this, Loader);
+
+    this.text = text;
+    this.spinner = ["⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋"];
+    this.interval = 80;
+    this.tick = 0;
+    this.loading = true;
+    this.loader = '';
+  }
+
+  _createClass(Loader, [{
+    key: 'start',
+    value: function start() {
+      var _this = this;
+
+      this.loader = setInterval(function () {
+        _this.tick = _this.tick > _this.loader.length - 1 ? 0 : _this.tick;
+        process.stdout.write(_this.spinner[_this.tick] + ' ' + _this.text + ' \r');
+        _this.tick++;
+      }, this.interval);
+      return this;
+    }
+  }, {
+    key: 'stop',
+    value: function stop() {
+      clearInterval(this.loader);
+      return this;
+    }
+  }, {
+    key: 'update',
+    value: function update(text) {
+      this.text = text;
+      this.stop();
+      this.start();
+      return this;
+    }
+  }]);
+
+  return Loader;
+}();
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -846,7 +846,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactDom = __webpack_require__(18);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(5);
 
 var _index = __webpack_require__(30);
 
@@ -1015,7 +1015,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1035,7 +1035,7 @@ if(false) {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1155,7 +1155,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1175,7 +1175,7 @@ if(false) {
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -1199,7 +1199,7 @@ exports.push([module.i, "html, body {\n  margin: 0;\n  padding: 0;\n  font-famil
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(6),n=__webpack_require__(7),p=__webpack_require__(2),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(6),n=__webpack_require__(7),p=__webpack_require__(4),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -1227,7 +1227,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(4);
 var invariant = __webpack_require__(16);
 var ReactPropTypesSecret = __webpack_require__(17);
 
@@ -1418,7 +1418,7 @@ if (true) {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),l=__webpack_require__(20),B=__webpack_require__(6),C=__webpack_require__(2),ba=__webpack_require__(21),da=__webpack_require__(22),ea=__webpack_require__(23),fa=__webpack_require__(24),ia=__webpack_require__(27),D=__webpack_require__(7);
+var aa=__webpack_require__(0),l=__webpack_require__(20),B=__webpack_require__(6),C=__webpack_require__(4),ba=__webpack_require__(21),da=__webpack_require__(22),ea=__webpack_require__(23),fa=__webpack_require__(24),ia=__webpack_require__(27),D=__webpack_require__(7);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -1692,7 +1692,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(4);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -2284,7 +2284,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2343,7 +2343,7 @@ var _marked = __webpack_require__(33);
 
 var _marked2 = _interopRequireDefault(_marked);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3746,6 +3746,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 __webpack_require__(36);
 
+__webpack_require__(38);
+
+var _krayon = __webpack_require__(40);
+
+var _krayon2 = _interopRequireDefault(_krayon);
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -3754,11 +3760,11 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _textarea = __webpack_require__(38);
+var _textarea = __webpack_require__(42);
 
 var _textarea2 = _interopRequireDefault(_textarea);
 
-var _util = __webpack_require__(3);
+var _util = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3846,15 +3852,23 @@ var Editor = function (_React$Component) {
           duration = _state.duration;
       var cons = output.cons,
           val = output.val;
+      // Since we don't want to display all html entities we just want to show spans
+      // Since we don't want to add extra characters by making these entities (which would throw off the underlying layer) we use a full-width greater than and less than. 
 
+      var colorized = (0, _krayon2.default)(value.replace(/</g, "＜").replace(/>/g, "＞"));
 
       return _react2.default.createElement(
         'div',
         { className: 'editor' },
-        _react2.default.createElement(_textarea2.default, {
-          onChange: this.onChange.bind(this),
-          value: value
-        }),
+        _react2.default.createElement(
+          'div',
+          { style: { position: 'relative' } },
+          _react2.default.createElement(_textarea2.default, {
+            onChange: this.onChange.bind(this),
+            value: value
+          }),
+          _react2.default.createElement('pre', { className: 'textarea-overlay', style: { position: 'absolute', top: 0, backgroundColor: 'rgba(255, 255, 255, 0)', whiteSpace: "pre-wrap" }, dangerouslySetInnerHTML: { __html: colorized } })
+        ),
         _react2.default.createElement(
           'div',
           { style: { overflow: 'auto', border: '1px solid #cfcfc4', padding: '0', borderBottomLeftRadius: '5px', borderBottomRightRadius: '5px' } },
@@ -3944,7 +3958,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -3964,18 +3978,153 @@ if(false) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".panel, .panel-body, .ace_editor, .textarea, .textarea-container {\n  border-top-left-radius: 5px;\n  border-top-right-radius: 5px;\n}\n\n.panel, .panel-body, .panel-footer, .panel-header {\n  padding: 0 !important;\n}\n\n.ace_editor {\n  font-size: 1em !important;\n}\n\n.description {\n  text-align: center;\n  font-weight: 100;\n  font-size: 18px;\n}\n\n.console {\n  position: relative;\n  border-top: 1px solid #CCC;\n  font-family: monospace;\n  line-height: 28px;\n  min-height: 37px;\n}\n\n.console .output {\n  color: #666;\n  width: 100%;\n  display: inline-block;\n}\n\n.console .output > pre {\n  padding: 0;\n  white-space: pre-wrap;\n  background-color: transparent;\n}\n\n.time {\n  color: #666;\n  font-family: monospace;\n  line-height: 13px;\n  padding: 8px;\n  font-size: 13px;\n}\n\n.run {\n  padding: 12px 18px;\n  margin: 10px;\n  cursor: pointer;\n  display: inline-block;\n  text-align: center;\n  border: 1px solid #cfcfc4;\n  margin: 4px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  background-color: rgb(81, 163, 81);\n  color: white;\n  border-radius: 0px;\n  padding: 0 10px;\n  line-height: 28px;\n}\n\n.textarea-container {\n  position: relative;\n  border: 1px solid #cfcfc4;\n  overflow: hidden;\n}\n\n.textarea {\n  resize: none;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n       -moz-box-sizing: border-box;\n            box-sizing: border-box;\n  color: white;\n  background: black;\n  margin: 0;\n  padding: 10px;\n  outline: none;\n  border: none;\n  min-height: 40px;\n  font: 13px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-shadow: none;\n  display: block;\n  overflow: hidden;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.textarea--hidden {\n  display: block;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n  visibility: hidden;\n  position: absolute;\n  top: 0;\n}\n", ""]);
+exports.push([module.i, ".panel, .panel-body, .ace_editor, .textarea, .textarea-container {\n  border-top-left-radius: 5px;\n  border-top-right-radius: 5px;\n}\n\n.panel, .panel-body, .panel-footer, .panel-header {\n  padding: 0 !important;\n}\n\n.ace_editor {\n  font-size: 1em !important;\n}\n\n.description {\n  text-align: center;\n  font-weight: 100;\n  font-size: 18px;\n}\n\n.console {\n  position: relative;\n  border-top: 1px solid #CCC;\n  font-family: monospace;\n  line-height: 28px;\n  min-height: 37px;\n}\n\n.console .output {\n  color: #666;\n  width: 100%;\n  display: inline-block;\n}\n\n.console .output > pre {\n  padding: 0;\n  white-space: pre-wrap;\n  background-color: transparent;\n}\n\n.time {\n  color: #666;\n  font-family: monospace;\n  line-height: 13px;\n  padding: 8px;\n  font-size: 13px;\n}\n\n.run {\n  padding: 12px 18px;\n  margin: 10px;\n  cursor: pointer;\n  display: inline-block;\n  text-align: center;\n  border: 1px solid #cfcfc4;\n  margin: 4px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  background-color: rgb(81, 163, 81);\n  color: white;\n  border-radius: 0px;\n  padding: 0 10px;\n  line-height: 28px;\n}\n\n.textarea-container {\n  position: relative;\n  border: 1px solid #cfcfc4;\n  border-bottom: 0;\n  overflow: hidden;\n  z-index: 100;\n}\n\n.textarea {\n  resize: none;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n       -moz-box-sizing: border-box;\n            box-sizing: border-box;\n  color: transparent;\n  background: transparent;\n  color: black;\n  text-shadow: 0px 0px 0px transparent;\n  -webkit-text-fill-color: transparent;\n  margin: 0;\n  padding: 10px;\n  outline: none;\n  border: none;\n  min-height: 40px;\n  font: 13px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-shadow: none;\n  display: block;\n  overflow: hidden;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.textarea-overlay {\n  resize: none;\n  width: 100%;\n  -webkit-box-sizing: border-box;\n       -moz-box-sizing: border-box;\n            box-sizing: border-box;\n  margin: 0;\n  padding: 10px;\n  outline: none;\n  border: none;\n  min-height: 40px;\n  font: 13px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-shadow: none;\n  display: block;\n  overflow: hidden;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.textarea--hidden {\n  display: block;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n  visibility: hidden;\n  position: absolute;\n  top: 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(39);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./krayon.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./krayon.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".string {\n  color: #032f62\n}\n.keyword {\n  color: #d73a49\n}\n.operator {\n  color: #d73a49\n}\n.function {\n  color: #005cc5\n}\n.class {\n  color: #6f42c1\n}\n.comment {\n  color: #6a737d\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const { encode, decode } = __webpack_require__(41);
+
+// reserved keywords in javascript
+const keywords = [
+  'const',
+  'let',
+  'var',
+  'function',
+  'if',
+  'else',
+  'for',
+  'while',
+  'break',
+  'switch',
+  'case',
+  'do',
+  'new',
+  'continue',
+  'delete',
+  'return',
+  'this',
+  'true',
+  'false',
+  'throw',
+  'catch',
+  'typeof',
+];
+
+// Syntax definition
+// The key becomes the class name of the <span>
+// around the matched block of code.
+const syntax = {
+  'comment': /(\/\*.*?\*\/|\/\/.*)/g,
+  'string': /("[^"]*"|'[^']+')/g,
+  'class': /\b([A-Z][a-z]+)\b/g,
+  'number': /\b([0-9]+(?:\.[0-9]+)?)\b/g,
+  'keyword': new(RegExp)('\\b(' + keywords.join('|') + ')\\b', 'g'),
+  'function': /([\w+]*)\(.*\);?/g,
+  'operator': /([+|=|-||])/g
+};
+
+module.exports = function kayron(code) {
+  Object.keys(syntax).forEach((s) => {
+    code = code.replace(syntax[s], (_, m) => {
+      // ensure if the regex only matches part of the string that we keep the leftover
+      let leftOver = _.replace(m, '');
+      // encode the string and class
+      return `{#${s}#${encode(m)}#}${leftOver}`;
+    });
+  });
+
+  return code.replace(/\{#([a-z]+)#(.*?)#\}/g, (_, name, value) => '<span class="' + name + '">' + decode(value) + '</span>');
+};
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+/**
+ * encode utf8 string to braile
+ * @method encode
+ * @param  {String} str - utf8 string
+ * @return {String} - brailed encoded string
+ */
+module.exports.encode = function encode(str) {
+  return str.split('').map((s) => {
+    if (s.charCodeAt(0) > 127) return s;
+    return String.fromCharCode(s.charCodeAt(0) + 0x2800);
+  }).join(' ');
+}
+
+/**
+ * decode brail back to utf8
+ * @method decode
+ * @param  {String} str - brail string
+ * @return {String} - utf8 decoded string
+ */
+module.exports.decode = function decode(str) {
+  return str.trim().split(' ').map((s) => {
+    if (s.charCodeAt(0) - 0x2800 > 127) return s;
+    return String.fromCharCode(s.charCodeAt(0) - 0x2800);
+  }).join('');
+}
+
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4029,12 +4178,17 @@ var Textarea = function (_React$Component) {
   }, {
     key: 'setFilledTextareaHeight',
     value: function setFilledTextareaHeight() {
-      if (this.mounted) {
-        var element = this.hidden;
+      var _this2 = this;
 
-        this.setState({
-          height: element.clientHeight
-        });
+      if (this.mounted) {
+        // put an artificial timeout to make sure the dom has updated
+        setTimeout(function () {
+          var element = _this2.hidden;
+
+          _this2.setState({
+            height: element.clientHeight
+          });
+        }, 5);
       }
     }
   }, {
@@ -4051,11 +4205,11 @@ var Textarea = function (_React$Component) {
   }, {
     key: 'getExpandableField',
     value: function getExpandableField() {
-      var isOneLine = this.state.height <= DEFAULT_HEIGHT;
       var _state = this.state,
           height = _state.height,
           value = _state.value;
 
+      var isOneLine = height <= DEFAULT_HEIGHT;
 
       return _react2.default.createElement('textarea', {
         className: 'textarea',
@@ -4074,14 +4228,14 @@ var Textarea = function (_React$Component) {
   }, {
     key: 'getGhostField',
     value: function getGhostField() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
         {
           className: 'textarea textarea--hidden',
           ref: function ref(c) {
-            return _this2.hidden = c;
+            return _this3.hidden = c;
           },
           'aria-hidden': 'true'
         },
