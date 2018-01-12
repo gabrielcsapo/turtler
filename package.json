@@ -31,10 +31,10 @@
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "brfs": "^1.4.3",
-    "browserify": "^14.5.0",
-    "eslint": "^4.13.1",
-    "tap": "^11.0.0",
+    "browserify": "^15.1.0",
+    "eslint": "^4.15.0",
+    "tap": "^11.0.1",
     "tape": "^4.8.0",
-    "tryitout": "^1.2.2"
+    "tryitout": "^2.0.2"
   }
 }
