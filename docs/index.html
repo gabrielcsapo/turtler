@@ -3846,6 +3846,9 @@ var Editor = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _props = this.props,
+          title = _props.title,
+          subtitle = _props.subtitle;
       var _state = this.state,
           value = _state.value,
           output = _state.output,
@@ -3853,13 +3856,30 @@ var Editor = function (_React$Component) {
       var cons = output.cons,
           val = output.val;
       // Since we don't want to display all html entities we just want to show spans
-      // Since we don't want to add extra characters by making these entities (which would throw off the underlying layer) we use a full-width greater than and less than. 
+      // Since we don't want to add extra characters by making these entities (which would throw off the underlying layer) we use a full-width greater than and less than.
 
       var colorized = (0, _krayon2.default)(value.replace(/</g, "＜").replace(/>/g, "＞"));
 
       return _react2.default.createElement(
         'div',
         { className: 'editor' },
+        _react2.default.createElement(
+          'div',
+          { className: 'text-left text-black' },
+          (0, _util.cleanString)(title),
+          subtitle ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'small',
+              null,
+              ' ',
+              (0, _util.cleanString)(subtitle),
+              ' '
+            )
+          ) : ''
+        ),
+        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
           { style: { position: 'relative' } },
@@ -3938,6 +3958,8 @@ var Editor = function (_React$Component) {
 }(_react2.default.Component);
 
 Editor.propTypes = {
+  title: _propTypes2.default.string,
+  subtitle: _propTypes2.default.string,
   value: _propTypes2.default.string
 };
 
@@ -4069,8 +4091,8 @@ const keywords = [
 // The key becomes the class name of the <span>
 // around the matched block of code.
 const syntax = {
+  'string': /("[^"]*"|'[^']+'|`[^`]+`)/g,
   'comment': /(\/\*.*?\*\/|\/\/.*)/g,
-  'string': /("[^"]*"|'[^']+')/g,
   'class': /\b([A-Z][a-z]+)\b/g,
   'number': /\b([0-9]+(?:\.[0-9]+)?)\b/g,
   'keyword': new(RegExp)('\\b(' + keywords.join('|') + ')\\b', 'g'),
