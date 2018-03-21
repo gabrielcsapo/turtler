@@ -1,3 +1,28 @@
+# 1.0.3 (03/20/2018)
+
+- removes caching, this should be done in userspace land
+- fixes calculation for header width for ascii
+
+> before
+
+```
+uid | name  | quote                  
+==================================
+1   | Doe   | this is a long string  
+2   | Hemma | this is a longer string
+```
+
+> after
+
+```
+uid | name  | quote                  
+=====================================
+1   | Doe   | this is a long string  
+2   | Hemma | this is a longer string
+```
+
+- simplifies header check
+
 # 1.0.2 (12/28/2017)
 
 - adds caching

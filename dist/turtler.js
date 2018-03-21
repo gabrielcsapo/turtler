@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"turtler":[function(require,module,exports){
+require=(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({"turtler":[function(require,module,exports){
 class Turtler {
   /**
    * will turn an array matrix into a table
@@ -16,7 +16,6 @@ class Turtler {
     let { hasHeader=true, columnSeparator=' | ', headerSeparator='=' } = options;
 
     this.data = data;
-    this.cache = {};
 
     this.hasHeader = hasHeader;
     this.columnSeparator = columnSeparator;
@@ -58,8 +57,6 @@ class Turtler {
    * @return {String} - ascii table
    */
   ascii() {
-    if (this.cache['ascii']) return this.cache['ascii'];
-
     const { data, hasHeader, columnSeparator, headerSeparator } = this;
 
     let table = '';
@@ -75,16 +72,15 @@ class Turtler {
 
       table += `${row}\n`;
 
-      if(l === 0) {
-        // ignore the header string if hasHeader is false or headerSeparator is not set
-        if(!hasHeader || !headerSeparator) return;
-
+      // ignore the header string if hasHeader is false or headerSeparator is not set
+      if(l === 0 && hasHeader && headerSeparator) {
         // we add columnSeparator.length because above we joined on that string which could be more than one character.
         // We only want one character so we only look at the first character of the string
-        table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeparator.length) + '\n';
+        // Ensure also that we add the column seperator length across multiple columns
+        table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b, 0)) + (columnSeparator.length * (columnWidths.length - 1))) + '\n';
       }
     });
-    return this.cache['ascii'] = table;
+    return table;
   }
   /**
    * renders a markdown table
@@ -92,8 +88,6 @@ class Turtler {
    * @return {String} markdown table string
    */
   markdown() {
-    if (this.cache['markdown']) return this.cache['markdown'];
-
     const { data } = this;
 
     let table = '';
@@ -120,7 +114,7 @@ class Turtler {
       }
     });
 
-    return this.cache['markdown'] = table;
+    return table;
   }
   /**
    * will return an html table representation of the data
@@ -128,8 +122,6 @@ class Turtler {
    * @return {String} - html table
    */
   html() {
-    if (this.cache['html']) return this.cache['html'];
-
     const { data } = this;
 
     let header = '';
@@ -141,17 +133,17 @@ class Turtler {
           ${row.map((value) => {
             return `<th>${value}</th>`;
           }).join('')}
-        </tr>`;;
+        </tr>`;
       } else {
         body += `<tr>
           ${row.map((value) => {
             return `<td>${value}</td>`;
           }).join('')}
-        </tr>`;;
+        </tr>`;
       }
     });
 
-    return this.cache['html'] = `<table>
+    return `<table>
       <thead>
         ${header}
       </thead>

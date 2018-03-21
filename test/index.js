@@ -3,7 +3,7 @@ const test = require('tape');
 const Turtler = require('../index');
 
 test('Turtler', (t) => {
-  t.plan(12);
+  t.plan(10);
 
   t.test('should throw on value that isn\'t an array of arrays', (t) => {
     try {
@@ -52,15 +52,14 @@ test('Turtler', (t) => {
     }
   });
 
-  t.test('should be able to format simple arrays (ascii/default) test cache', (t) => {
+  t.test('should be able to ensure the header length will be appropriately sized across multiple columns', (t) => {
     try {
       let table = new Turtler([
-        ["uid", "name"],
-        ["1", "Doe"],
-        ["2", "Hemma"]
+        ["uid", "name", "quote"],
+        ["1", "Doe", "this is a long string"],
+        ["2", "Hemma", "this is a longer string"]
       ]);
-      t.equal(table.toString(), 'uid | name \n===========\n1   | Doe  \n2   | Hemma\n');
-      t.equal(table.toString(), 'uid | name \n===========\n1   | Doe  \n2   | Hemma\n');
+      t.equal(table.toString(), 'uid | name  | quote                  \n=====================================\n1   | Doe   | this is a long string  \n2   | Hemma | this is a longer string\n');
       t.end();
     } catch(ex) {
       t.fail(ex);
@@ -74,21 +73,6 @@ test('Turtler', (t) => {
         ["1", "Doe"],
         ["2", "Hemma"]
       ]);
-      t.equal(table.markdown(), '| uid | name  |\n|-----|-------|\n| 1   | Doe   |\n| 2   | Hemma |\n');
-      t.end();
-    } catch(ex) {
-      t.fail(ex);
-    }
-  });
-
-  t.test('should be able to format simple arrays (markdown) test cache', (t) => {
-    try {
-      let table = new Turtler([
-        ["uid", "name"],
-        ["1", "Doe"],
-        ["2", "Hemma"]
-      ]);
-      t.equal(table.markdown(), '| uid | name  |\n|-----|-------|\n| 1   | Doe   |\n| 2   | Hemma |\n');
       t.equal(table.markdown(), '| uid | name  |\n|-----|-------|\n| 1   | Doe   |\n| 2   | Hemma |\n');
       t.end();
     } catch(ex) {
@@ -159,18 +143,4 @@ test('Turtler', (t) => {
     }
   });
 
-  t.test('should be able to format simple arrays (html) test cache', (t) => {
-    try {
-      let table = new Turtler([
-        ["uid", "name"],
-        ["1", "Doe"],
-        ["2", "Hemma"]
-      ]);
-      t.equal(table.html(), '<table>      <thead>        <tr>          <th>uid</th><th>name</th>        </tr>      </thead>      <tbody>        <tr>          <td>1</td><td>Doe</td>        </tr><tr>          <td>2</td><td>Hemma</td>        </tr>      </tbody>    </table>');
-      t.equal(table.html(), '<table>      <thead>        <tr>          <th>uid</th><th>name</th>        </tr>      </thead>      <tbody>        <tr>          <td>1</td><td>Doe</td>        </tr><tr>          <td>2</td><td>Hemma</td>        </tr>      </tbody>    </table>');
-      t.end();
-    } catch(ex) {
-      t.fail(ex);
-    }
-  });
 });

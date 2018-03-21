@@ -15,7 +15,6 @@ class Turtler {
     let { hasHeader=true, columnSeparator=' | ', headerSeparator='=' } = options;
 
     this.data = data;
-    this.cache = {};
 
     this.hasHeader = hasHeader;
     this.columnSeparator = columnSeparator;
@@ -57,8 +56,6 @@ class Turtler {
    * @return {String} - ascii table
    */
   ascii() {
-    if (this.cache['ascii']) return this.cache['ascii'];
-
     const { data, hasHeader, columnSeparator, headerSeparator } = this;
 
     let table = '';
@@ -74,16 +71,15 @@ class Turtler {
 
       table += `${row}\n`;
 
-      if(l === 0) {
-        // ignore the header string if hasHeader is false or headerSeparator is not set
-        if(!hasHeader || !headerSeparator) return;
-
+      // ignore the header string if hasHeader is false or headerSeparator is not set
+      if(l === 0 && hasHeader && headerSeparator) {
         // we add columnSeparator.length because above we joined on that string which could be more than one character.
         // We only want one character so we only look at the first character of the string
-        table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b)) + columnSeparator.length) + '\n';
+        // Ensure also that we add the column seperator length across multiple columns
+        table += headerSeparator[0].repeat((columnWidths.reduce((a, b) => a + b, 0)) + (columnSeparator.length * (columnWidths.length - 1))) + '\n';
       }
     });
-    return this.cache['ascii'] = table;
+    return table;
   }
   /**
    * renders a markdown table
@@ -91,8 +87,6 @@ class Turtler {
    * @return {String} markdown table string
    */
   markdown() {
-    if (this.cache['markdown']) return this.cache['markdown'];
-
     const { data } = this;
 
     let table = '';
@@ -119,7 +113,7 @@ class Turtler {
       }
     });
 
-    return this.cache['markdown'] = table;
+    return table;
   }
   /**
    * will return an html table representation of the data
@@ -127,8 +121,6 @@ class Turtler {
    * @return {String} - html table
    */
   html() {
-    if (this.cache['html']) return this.cache['html'];
-
     const { data } = this;
 
     let header = '';
@@ -150,7 +142,7 @@ class Turtler {
       }
     });
 
-    return this.cache['html'] = `<table>
+    return `<table>
       <thead>
         ${header}
       </thead>
