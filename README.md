@@ -86,7 +86,22 @@ console.log(table.html());
 This will yield:
 
 ```html
-<div class="table row"><span class="table column">uid</span><span class="table column">name</span></div>
-<div class="table row"><span class="table column">1</span><span class="table column">Doe</span></div>
-<div class="table row"><span class="table column">2</span><span class="table column">Hemma</span></div>
+<table>
+  <thead>
+    <tr>
+      <th>uid</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Doe</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Hemma</td>
+    </tr>
+  </tbody>
+</table>
 ```
