@@ -27,8 +27,8 @@ let table = new Turtler([
   ["2", "Hemma"]
 ], {
   hasHeader: true,
-  columnSeperator: ' | ',
-  headerSeperator: '='
+  columnSeparator: ' | ',
+  headerSeparator: '='
 });
 
 console.log(table);
