@@ -1,3 +1,7 @@
+# 1.1.0 (05/18/2018)
+
+- adds decorate option to alter the output of (ascii, markdown and ascii)
+
 # 1.0.3 (03/20/2018)
 
 - removes caching, this should be done in userspace land

@@ -1,6 +1,6 @@
 {
   "name": "turtler",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "🐢 Ascii tables made easy",
   "repository": {
     "type": "git",
@@ -18,11 +18,12 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js constants.js test",
+    "lint": "standard index.js constants.js test/**.js",
+    "lint:fix": "standard --fix index.js constants.js test/**.js",
     "test": "tape test/*.js",
     "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
     "coverage": "tap test --coverage --coverage-report=lcov",
-    "generate-docs": "tryitout"
+    "generate-docs": "npm run build && tryitout"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -32,7 +33,7 @@
     "babelify": "^8.0.0",
     "brfs": "^1.4.3",
     "browserify": "^15.1.0",
-    "eslint": "^4.15.0",
+    "standard": "^11.0.1",
     "tap": "^11.0.1",
     "tape": "^4.8.0",
     "tryitout": "^2.0.7"
