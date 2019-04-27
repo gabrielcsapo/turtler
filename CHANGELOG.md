@@ -1,3 +1,8 @@
+# 1.1.1 (04/26/2019)
+
+- bumps devDependencies
+- generates build using babel@7
+
 # 1.1.0 (05/18/2018)
 
 - adds decorate option to alter the output of (ascii, markdown and ascii)

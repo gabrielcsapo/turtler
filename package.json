@@ -1,6 +1,6 @@
 {
   "name": "turtler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "🐢 Ascii tables made easy",
   "repository": {
     "type": "git",
@@ -21,21 +21,21 @@
     "lint": "standard index.js constants.js test/**.js",
     "lint:fix": "standard --fix index.js constants.js test/**.js",
     "test": "tape test/*.js",
-    "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
+    "build": "browserify -r ./index.js:turtler -t [ brfs ] -t [ babelify --presets [ @babel/preset-env ]]  > dist/turtler.js && minify dist/turtler.js --out-file dist/turtler.min.js",
     "coverage": "tap test --coverage --coverage-report=lcov",
     "generate-docs": "npm run build && tryitout"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-minify": "^0.2.0",
-    "babel-preset-env": "^1.6.1",
-    "babelify": "^8.0.0",
-    "brfs": "^1.4.3",
-    "browserify": "^15.1.0",
-    "standard": "^11.0.1",
-    "tap": "^11.0.1",
-    "tape": "^4.8.0",
-    "tryitout": "^2.0.7"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-minify": "^0.5.0",
+    "babelify": "^10.0.0",
+    "brfs": "^2.0.2",
+    "browserify": "^16.2.3",
+    "standard": "^12.0.1",
+    "tap": "^13.0.3",
+    "tape": "^4.10.1",
+    "tryitout": "^2.1.1"
   }
 }
